@@ -2,8 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+//max player 10
 #define maxP 10
+
+//jumlah kartu dalam 1 deck ada 52
 #define deck 52
+
+typedef struct {
+char name[100];
+int win;
+} Player;
 
 //banner
 const char *BANNER =
@@ -12,18 +20,18 @@ const char *BANNER =
 "=================================\n";
 
 //swap
-void swap(int *a, int *b){
-    int temp;
+void swap(Player *a, Player *b){
+    Player temp;
     temp = *a;
     *a = *b;
     *b = temp;
 }
 
 //sorting
-void sortLeaderboard(int player[], int playerCount){
+void sortLeaderboard(Player player[], int playerCount){
     for(int i = 0; i < playerCount - 1; i++){
         for(int j = 0; j < playerCount - 1; j++){
-            if(player[j] < player[j + 1]){
+            if(player[j].win < player[j + 1].win){ //sorting secara descending
                 swap(&player[j], &player[j + 1]);
             }
         }
@@ -35,22 +43,23 @@ int main (){
 printf("%s", BANNER);
 
 int playerCount;
-scanf("%d", &playerCount);
+scanf("%d", &playerCount); //input jumlah player
 if(playerCount > maxP){
     playerCount = maxP;
 }
 
 //input player
-int player[maxP];
+Player player[maxP];
     for(int i = 0; i < playerCount; i++){
-        scanf("%d", &player[i]);
+        scanf("%s", player[i].name);
+        player[i].win = 0;   
     }
 
 sortLeaderboard(player, playerCount);
 
 //print leaderboard
     for(int i = 0; i < playerCount; i++){
-        printf("%d ", player[i]);
+    printf("%d. %s - Win: %d\n", i+1, player[i].name, player[i].win);
     }
 
     return 0;
