@@ -5,6 +5,13 @@
 #define maxP 10
 #define deck 52
 
+//banner
+const char *BANNER =
+"=================================\n"
+"   BLACKJACK676767 PASTI GACOR\n"
+"=================================\n";
+
+//swap
 void swap(int *a, int *b){
     int temp;
     temp = *a;
@@ -12,6 +19,7 @@ void swap(int *a, int *b){
     *b = temp;
 }
 
+//sorting
 void sortLeaderboard(int player[], int playerCount){
     for(int i = 0; i < playerCount - 1; i++){
         for(int j = 0; j < playerCount - 1; j++){
@@ -23,12 +31,16 @@ void sortLeaderboard(int player[], int playerCount){
 }
 
 int main (){
+
+printf("%s", BANNER);
+
 int playerCount;
 scanf("%d", &playerCount);
 if(playerCount > maxP){
     playerCount = maxP;
 }
 
+//input player
 int player[maxP];
     for(int i = 0; i < playerCount; i++){
         scanf("%d", &player[i]);
@@ -36,6 +48,7 @@ int player[maxP];
 
 sortLeaderboard(player, playerCount);
 
+//print leaderboard
     for(int i = 0; i < playerCount; i++){
         printf("%d ", player[i]);
     }
