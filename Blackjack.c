@@ -15,7 +15,7 @@ void swap(int *a, int *b){
 void sortLeaderboard(int player[], int playerCount){
     for(int i = 0; i < playerCount - 1; i++){
         for(int j = 0; j < playerCount - 1; j++){
-            if(player[j] > player[j + 1]){
+            if(player[j] < player[j + 1]){
                 swap(&player[j], &player[j + 1]);
             }
         }
@@ -25,7 +25,20 @@ void sortLeaderboard(int player[], int playerCount){
 int main (){
 int playerCount;
 scanf("%d", &playerCount);
-int player[playerCount];
+if(playerCount > maxP){
+    playerCount = maxP;
+}
+
+int player[maxP];
+    for(int i = 0; i < playerCount; i++){
+        scanf("%d", &player[i]);
+    }
+
+sortLeaderboard(player, playerCount);
+
+    for(int i = 0; i < playerCount; i++){
+        printf("%d ", player[i]);
+    }
 
     return 0;
 }
