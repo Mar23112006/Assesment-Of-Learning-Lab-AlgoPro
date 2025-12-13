@@ -38,6 +38,17 @@ void sortLeaderboard(Player player[], int playerCount){
     }
 }
 
+//searching
+int searchPlayer(Player players[], int playerCount, char key[]){
+    for(int i = 0; i < playerCount; i++){
+        if(strcmp(players[i].name, key) == 0){
+            return i;
+        }
+    }
+    return -1;
+}
+
+
 int main (){
 
 printf("%s", BANNER);
@@ -55,6 +66,23 @@ Player player[maxP];
         player[i].win = 0;   
     }
 
+//main blackjack
+
+//searching
+char key[100];
+    printf("\nSearch player name: ");
+    scanf("%s", key);
+
+    int idx = searchPlayer(player, playerCount, key);
+
+    if(idx == -1){
+        printf("Player not found.\n");
+    } else {
+        printf("Player found!\n");
+        printf("Nama: %s\n", player[idx].name);
+        printf("Win : %d\n", player[idx].win);
+    }
+    
 sortLeaderboard(player, playerCount);
 
 //print leaderboard
